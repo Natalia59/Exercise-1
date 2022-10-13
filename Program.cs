@@ -1,29 +1,25 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
-// override object.Equals
-public override bool Equals(object obj)
+﻿//Задача 25: Напишите цикл, который принимает на вход два числа (A и B) и 
+//возводит число A в натуральную степень B.
+//3, 5 -> 243 (3⁵)
+//2, 4 -> 16
+
+class Program
 {
-    //
-    // See the full list of guidelines at
-    //   http://go.microsoft.com/fwlink/?LinkID=85237
-    // and also the guidance for operator== at
-    //   http://go.microsoft.com/fwlink/?LinkId=85238
-    //
-    
-    if (obj == null || GetType() != obj.GetType())
-    {
-        return false;
-    }
-    
-    // TODO: write your implementation of Equals() here
-    throw new System.NotImplementedException();
-    return base.Equals (obj);
+public static void Main(string[] args)
+{
+    Console.WriteLine("Введите число A: ");
+    int numberA = Convert.ToInt32(Console.ReadLine());
+
+    Console.Write("Введите число B: ");
+    int numberB = Convert.ToInt32(Console.ReadLine());
+
+    Console.WriteLine(Math.Pow(numberA, numberB));
+
+    int result = 1;
+    for(int i=1; i <= numberB; i++)
+    result = result * numberA;
+  
+    Console.WriteLine("Ответ: " + result);
+}
 }
 
-// override object.GetHashCode
-public override int GetHashCode()
-{
-    // TODO: write your implementation of GetHashCode() here
-    throw new System.NotImplementedException();
-    return base.GetHashCode();
-}
