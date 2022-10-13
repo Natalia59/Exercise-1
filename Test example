@@ -9,7 +9,8 @@ string? seriesOfNumbers = Console.ReadLine();
 seriesOfNumbers = seriesOfNumbers + ",";    // дополнительня запятая для обозначения конца строки
 
 // функция удаления пробелов из строки 
-string RemovingSpaces (string series){
+string RemovingSpaces (string series)
+{
   string seriesNew = "";
   for (int i = 0; i < series.Length; i++)
   {
