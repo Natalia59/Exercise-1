@@ -1,0 +1,37 @@
+//Создание рандомного массива
+
+using System;
+
+class program
+{
+   int SumEl = GetSumEl(array);
+   
+    public static void Main(string[] args)
+    {
+        int[] array = GetRandomNumbers(10);
+        for (int i = 0; i < 10; i++)
+        {
+            Console.Write(array[i] + " ");
+        }
+    }
+    static int[] GetRandomNumbers(int Size)
+    {
+        int[] num = new int[Size];
+        for (int i = 0; i < Size; i++)
+        {
+            num[i] = new Random().Next(-10, 10);
+        }
+
+        return num;
+    }
+    int GetSumEl(int[] array)
+{
+    int sum = 0;
+    for (int i = 0; i < array.Length; i++)
+    {
+        if (i % 2 == 1) sum += array[i];
+    }
+    return sum;
+}
+}
+Console.Write ($" -> Сумма элементов, стоящих на нечётных позициях = {SumEl}");
