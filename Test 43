@@ -6,33 +6,33 @@ Console.Clear();
 
 static int GetNumberFromUser(string message, string errorMessage)
 {
-    while (true)
-    {
-        Console.Write(message);
-        bool isCorrect = int.TryParse(Console.ReadLine() ?? "", out int userNumber );
-        if (isCorrect)
-            return userNumber;
-        Console.WriteLine(errorMessage);
-    }
+  while (true)
+  {
+    Console.Write(message);
+    bool isCorrect = int.TryParse(Console.ReadLine() ?? "", out int userNumber );
+    if (isCorrect)
+    return userNumber;
+    Console.WriteLine(errorMessage);
+  }
 }
 
-static double GetXKoordinate(int firstNumber, int secondNumber, int thirdNumber, int fourthNumber)
+static double GetXCoefficients(int A, int B, int C, int D)
 {
-    double x = (double) (thirdNumber - firstNumber) / (secondNumber - fourthNumber);
-    return x;
+  double x = (double) (C - A) / (B - D);
+  return x;
 }
 
-static double GetYKoordinate(int firstNumber, int secondNumber, double xKoordinate)
+static double GetYCoefficients(int A, int B, double xCoefficients)
 {
-    double y = secondNumber * xKoordinate + firstNumber;
-    return y;
+  double y = B * xCoefficients + A;
+  return y;
 }
 int NumberB1 = GetNumberFromUser("Enter b1 : ", "Error. Try again.");
 int NumberK1 = GetNumberFromUser("Enter k1 : ", "Error. Try again.");
 int NumberB2 = GetNumberFromUser("Enter b2 : ", "Error. Try again.");
 int NumberK2 = GetNumberFromUser("Enter k2 : ", "Error. Try again.");
 
-double x = GetXKoordinate(NumberB1, NumberK1, NumberB2, NumberK2);
-double y = GetYKoordinate(NumberB1, NumberK1, x);
+double x = GetXCoefficients(NumberB1, NumberK1, NumberB2, NumberK2);
+double y = GetYCoefficients(NumberB1, NumberK1, x);
 
 Console.Write($"\nb1 = {NumberB1}, k1 = {NumberK1}, b2 = {NumberB2}, k2 = {NumberK2} ответ: -> ({x};{y})\n");
