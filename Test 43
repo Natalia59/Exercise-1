@@ -1,49 +1,38 @@
-// Задача 43. Напишите программу, которая найдёт точку пересечения двух прямых, заданных уравнениями y = k1 * x + b1, y = k2 * x + b2; значения b1, k1, b2 и k2 задаются пользователем.
+// Задача 43. Напишите программу, которая найдёт точку пересечения двух прямых, заданных уравнениями y = k1 * x + b1, y = k2 * x + b2; 
+// значения b1, k1, b2 и k2 задаются пользователем.
 // b1 = 2, k1 = 5, b2 = 4, k2 = 9 -> (-0,5; 5,5)
 
+Console.Clear();
 
-Console.WriteLine($"\nЗадача 43.  Найти точку пересечения двух прямых \n");
-
-double[,] coeff = new double[2, 2];
-double[] crossPoint = new double[2];
-
-void InputCoefficients()
+static int GetNumberFromUser(string message, string errorMessage)
 {
-  for (int i = 0; i < coeff.GetLength(0); i++)
-  {
-    Console.Write($"Введите коэффициенты {i+1}-го уравнения (y = k * x + b):\n");
-    for (int j = 0; j < coeff.GetLength(1); j++)
+    while (true)
     {
-      if(j==0) Console.Write($"Введите коэффициент k: ");
-      else Console.Write($"Введите коэффициент b: ");
-      coeff[i,j] = Convert.ToInt32(Console.ReadLine());
+        Console.Write(message);
+        bool isCorrect = int.TryParse(Console.ReadLine() ?? "", out int userNumber );
+        if (isCorrect)
+            return userNumber;
+        Console.WriteLine(errorMessage);
     }
-  }
 }
 
-double[] Decision(double[,] coeff)
+static double GetXKoordinate(int firstNumber, int secondNumber, int thirdNumber, int fourthNumber)
 {
-  crossPoint[0] = (coeff[1,1] - coeff[0,1]) / (coeff[0,0] - coeff[1,0]);
-  crossPoint[1] = crossPoint[0] * coeff[0,0] + coeff[0,1];
-  return crossPoint;
+    double x = (double) (thirdNumber - firstNumber) / (secondNumber - fourthNumber);
+    return x;
 }
 
-void OutputResponse(double[,] coeff)
+static double GetYKoordinate(int firstNumber, int secondNumber, double xKoordinate)
 {
-  if (coeff[0,0] == coeff[1,0] && coeff[0,1] == coeff[1,1]) 
-  {
-    Console.Write($"\nПрямые совпадают");
-  }
-  else if (coeff[0,0] == coeff[1,0] && coeff[0,1] != coeff[1,1]) 
-  {
-    Console.Write($"\nПрямые параллельны");
-  }
-  else 
-  {
-    Decision(coeff);
-    Console.Write($"\nТочка пересечения прямых: ({crossPoint[0]}, {crossPoint[1]})");
-  }
+    double y = secondNumber * xKoordinate + firstNumber;
+    return y;
 }
+int NumberB1 = GetNumberFromUser("Enter b1 : ", "Error. Try again.");
+int NumberK1 = GetNumberFromUser("Enter k1 : ", "Error. Try again.");
+int NumberB2 = GetNumberFromUser("Enter b2 : ", "Error. Try again.");
+int NumberK2 = GetNumberFromUser("Enter k2 : ", "Error. Try again.");
 
-InputCoefficients();
-OutputResponse(coeff);
+double x = GetXKoordinate(NumberB1, NumberK1, NumberB2, NumberK2);
+double y = GetYKoordinate(NumberB1, NumberK1, x);
+
+Console.Write($"\nb1 = {NumberB1}, k1 = {NumberK1}, b2 = {NumberB2}, k2 = {NumberK2} ответ: -> ({x};{y})\n");
