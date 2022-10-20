@@ -30,3 +30,4 @@ int Comparison(int[] ArrayNumbers)
 InputNumbers(m);
 
 Console.WriteLine($"Введено чисел больше 0: {Comparison(ArrayNumbers)} ");
+
