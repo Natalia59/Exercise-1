@@ -29,7 +29,6 @@ InputNumbers(m);
 Console.WriteLine($"Введено чисел больше 0: {Comparison(massiveNumbers)} ");
 
 
-
   
 
 
